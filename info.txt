@@ -1,1 +1,42 @@
 https://medium.com/bettercode/how-to-build-a-modern-ci-cd-pipeline-5faa01891a5b
+
+To Initalize a repo:
+
+git init
+git add *
+git commit -m "Initial commit"
+git remote add origin git@github.com:<YOUR_GITHUB_USERNAME>/cicd-buzz.git
+git push -u origin master
+
+
+Once the repo has been initialized (ie every update you want to push):
+git add .travis.yml
+git commit -m "Add Travis CI configuration"
+git push
+
+Any changes need to be built:
+
+docker build -t stockz .
+
+To run the container:
+docker run -p 5000:5000 --rm -it stockz
+
+To list the continers:
+docker images
+
+To Save the container:
+
+docker save -o ./stockz.tar stockz
+
+and Load it on a different docker (assuming you don't want to use a repo):
+
+docker load -i stockz.tar 
+
+Then start the container
+
+To remove the container:
+
+Verify the image is there-
+docker images -a 
+
+docker rmi stockz
