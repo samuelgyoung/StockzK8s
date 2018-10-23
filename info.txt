@@ -1,5 +1,9 @@
 https://medium.com/bettercode/how-to-build-a-modern-ci-cd-pipeline-5faa01891a5b
 
+To Run the App locally for modification/testig:
+
+python app.py
+
 To Initalize a repo:
 
 git init
