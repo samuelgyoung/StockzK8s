@@ -63,7 +63,7 @@ Upload to K8s:
 
 	kubectl expose deployment stockz --target-port=5000 --type=NodePort
 	
-	PORT=$(kubectl get svc my-web  -o go-template='{{(index .spec.ports 0).nodePort}}')
+	PORT=$(kubectl get svc stockz  -o go-template='{{(index .spec.ports 0).nodePort}}')
 	
 	IP=$(minikube ip)
 
