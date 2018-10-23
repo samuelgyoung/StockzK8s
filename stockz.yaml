@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: stock
+spec:
+   containers:
+     - name: stockz
+       image: idp-registry.sysibm-adm.svc.cluster.local:31006/stockz
+       ports:
+         - containerPort: 5000
