@@ -36,7 +36,48 @@ Then start the container
 
 To remove the container:
 
-Verify the image is there-
-docker images -a 
+	Verify the image is there-
+	docker images -a 
 
-docker rmi stockz
+	docker rmi stockz
+
+
+Uploading to a repo:
+
+docker image tag stockz <repo IP>:<repo port>/stockz
+
+docker push <repo IP>:<repo port>/stockz
+
+Download it from repo:
+
+docker pull <repo IP>:<repo port>/stockz
+
+Upload to K8s:
+
+	Switch to minikube k8 deployment:
+		eval $(minikube docker-env)
+
+	docker pull <repo IP>:<repo port>/myweb
+
+	kubectl run my-web --image=$REG_IP:80/myweb --port=5000
+
+	kubectl expose deployment my-web --target-port=5000 --type=NodePort
+	
+	PORT=$(kubectl get svc my-web  -o go-template='{{(index .spec.ports 0).nodePort}}')
+	
+	IP=$(minikube ip)
+
+	curl $IP:$PORT
+
+To Delete the K8s Service:
+	
+	kubectl delete service stockz
+
+	kubectl delete deployment stockz
+		
+	
+
+Switch Back to Local host:
+		eval "$(docker-machine env -u)"
+
+
